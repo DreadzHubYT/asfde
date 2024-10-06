@@ -55,6 +55,24 @@
         h1 {
             font-size: 4em;
             margin: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .phrase {
+            font-size: 1.2em; /* Adjust size to make it smaller */
+            margin: 20px 0; /* Add margin above and below */
+            color: #ffffff; /* Text color */
+            text-shadow: 0 0 10px #ffffff; /* Glowing effect */
+            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .search-bar {
+            display: flex;
+            flex-direction: column; /* Stack inputs vertically */
+            align-items: center; /* Center items */
+            margin-top: 20px; /* Add some margin on top */
             animation: fadeIn 2s ease-in-out forwards;
             opacity: 0;
         }
@@ -63,20 +81,6 @@
             to {
                 opacity: 1; /* Fully visible */
             }
-        }
-
-        .phrase {
-            font-size: 1.2em; /* Adjust size to make it smaller */
-            margin: 20px 0; /* Add margin above and below */
-            color: #ffffff; /* Text color */
-            text-shadow: 0 0 10px #ffffff; /* Glowing effect */
-        }
-
-        .search-bar {
-            display: flex;
-            flex-direction: column; /* Stack inputs vertically */
-            align-items: center; /* Center items */
-            margin-top: 20px; /* Add some margin on top */
         }
 
         .form__input {
