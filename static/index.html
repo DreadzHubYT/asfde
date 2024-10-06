@@ -247,15 +247,6 @@
 
         displayRandomPhrase();
 
-        function handleSearch(event) {
-            event.preventDefault(); // Prevent default form submission
-            const query = document.getElementById('uv-address').value; // Get the user input
-            const searchEngine = document.getElementById('uv-search-engine').value; // Get the search engine URL
-            const searchUrl = searchEngine.replace('%s', encodeURIComponent(query)); // Construct the search URL
-            window.location.href = searchUrl; // Redirect to the search URL
-            return false; // Prevent form submission
-        }
-
         particlesJS("particles-js", {
             particles: {
                 number: {
