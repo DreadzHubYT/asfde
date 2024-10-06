@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zen</title>
+    <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-
     <style>
         /* Style for the particles container */
         #particles-js {
@@ -42,21 +42,9 @@
             user-select: none; /* Prevent text selection */
         }
 
-        @keyframes slideInFromTop {
-            0% {
-                transform: translateY(-30px); /* Start above the viewport */
-                opacity: 0; /* Start hidden */
-            }
-            100% {
-                transform: translateY(0); /* End at original position */
-                opacity: 1; /* Fully visible */
-            }
-        }
-
         h1 {
             font-size: 4em;
             margin: 0;
-            animation: slideInFromTop 1s ease-in-out forwards; /* Slide and fade-in animation */
         }
 
         .phrase {
@@ -64,14 +52,6 @@
             margin: 20px 0; /* Add margin above and below */
             color: #ffffff; /* Text color */
             text-shadow: 0 0 10px #ffffff; /* Glowing effect */
-            opacity: 0; /* Start hidden for fade-in */
-            animation: fadeIn 1s ease-in-out forwards; /* Fade in animation for phrase */
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1; /* Fully visible */
-            }
         }
 
         .search-bar {
@@ -79,20 +59,6 @@
             flex-direction: column; /* Stack inputs vertically */
             align-items: center; /* Center items */
             margin-top: 20px; /* Add some margin on top */
-            opacity: 0; /* Start hidden for animation */
-            animation: slideInFromBottom 1s ease-out forwards; /* Slide in animation */
-            animation-delay: 0.5s; /* Delay for slide-in */
-        }
-
-        @keyframes slideInFromBottom {
-            from {
-                transform: translateY(30px); /* Start below */
-                opacity: 0; /* Start hidden */
-            }
-            to {
-                transform: translateY(0); /* Move to original position */
-                opacity: 1; /* Fully visible */
-            }
         }
 
         .search-input {
@@ -114,44 +80,6 @@
             border-color: #fff; /* Change border color on focus */
         }
 
-        .search-button {
-            margin-top: 10px; /* Space above button */
-            padding: 10px 15px; /* Padding for the button */
-            font-size: 1em; /* Font size for button */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            background-color: #15df00; /* Background color */
-            color: #fff; /* Text color */
-            cursor: pointer; /* Pointer cursor */
-            transition: background-color 0.3s; /* Transition for hover */
-        }
-
-        .search-button:hover {
-            background-color: #5c00a2; /* Darker shade on hover */
-        }
-
-        .nav {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0; /* Margin above the navbar */
-            z-index: 1; /* Ensure it's above the particles */
-        }
-
-        .nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px; /* Space between tabs */
-            border: 2px solid transparent; /* Initial border */
-            border-radius: 5px; /* Rounded corners */
-            transition: border-color 0.3s, color 0.3s; /* Transition effect */
-        }
-
-        .nav a:hover {
-            border-color: #15df00; /* Change border color on hover */
-            color: #15df00; /* Change text color on hover */
-        }
-
         #footer {
             position: absolute;
             bottom: 10px;
@@ -159,7 +87,6 @@
             transform: translateX(-50%);
             color: white;
             text-align: center;
-            z-index: 1;
         }
 
         /* Bottom Right Navigation */
@@ -199,26 +126,30 @@
         <div class="search-bar">
             <form id="uv-form" onsubmit="return handleSearch(event);">
                 <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
-                <input id="uv-address" type="text" placeholder="Search..." class="search-input" required/>
+                <input id="uv-address" type="text" placeholder="Search Google or type an URL" class="search-input" required/>
             </form>
         </div>
         <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
         </div>
+        <div class="bottom-nav">
+            <a href="https://discord.gg/zJhPJYJCeJ" target="_blank" class="fa-brands fa-discord"></a>
+            <a href="https://github.com/TheTIW/UV-Static" target="_blank" class="fa-brands fa-github"></a>
+            <a href="https://starttiw.org" target="_blank" class="fa-solid fa-cloud"></a>
+        </div>
     </div>
 
-    <!-- Bottom Right Navigation -->
-
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-VHVNHMYGN3"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="search.js"></script> <!-- Include the new search.js file -->
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="index.js" defer></script>
+    <script src="error.js" defer></script>
+    
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-VHVNHMYGN3');
-
         const phrases = [
             "Ermmmm... what the sigma?",
             "I love interstellar!",
@@ -310,26 +241,10 @@
             },
             retina_detect: true
         });
-
-                function handleSearch(event) {
-            event.preventDefault(); // Prevent default form submission
-            const searchInput = document.getElementById('uv-address').value; // Get the search input value
-            const searchEngineUrl = document.getElementById('uv-search-engine').value; // Get the search engine URL
-
-            if (searchInput) {
-                // Replace %s in the URL with the actual search term
-                const searchUrl = searchEngineUrl.replace('%s', encodeURIComponent(searchInput));
-                window.location.href = searchUrl; // Redirect to the search engine with the query
-            } else {
-                document.getElementById('uv-error').textContent = "Please enter a search term."; // Show an error if empty
-            }
-
-            return false; // Return false to prevent form submission
-        }
     </script>
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
-    <script src="register-sw.js" defer></script>
-    <script src="index.js" defer></script>
+
+    <div id="footer">
+        <p>&copy; 2023 TIW. All rights reserved.</p>
+    </div>
 </body>
 </html>
