@@ -37,8 +37,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #7000cd; /* Heading color */
-            text-shadow: 0 0 20px #7000cd, 0 0 30px #7000cd; /* Glowing text effect */
+            color: #15df00; /* Heading color */
+            text-shadow: 0 0 20px #15df00, 0 0 30px #15df00; /* Glowing text effect */
             user-select: none; /* Prevent text selection */
         }
 
@@ -98,7 +98,7 @@
         .search-input {
             padding: 10px;
             font-size: 1em; /* Font size for input */
-            border: 2px solid #7000cd; /* Border color */
+            border: 2px solid #15df00; /* Border color */
             border-radius: 5px; /* Rounded corners */
             outline: none; /* Remove outline on focus */
             color: #fff; /* Text color */
@@ -120,7 +120,7 @@
             font-size: 1em; /* Font size for button */
             border: none; /* No border */
             border-radius: 5px; /* Rounded corners */
-            background-color: #7000cd; /* Background color */
+            background-color: #15df00; /* Background color */
             color: #fff; /* Text color */
             cursor: pointer; /* Pointer cursor */
             transition: background-color 0.3s; /* Transition for hover */
@@ -148,8 +148,8 @@
         }
 
         .nav a:hover {
-            border-color: #7000cd; /* Change border color on hover */
-            color: #7000cd; /* Change text color on hover */
+            border-color: #15df00; /* Change border color on hover */
+            color: #15df00; /* Change text color on hover */
         }
 
         #footer {
@@ -172,7 +172,7 @@
         }
 
         .bottom-nav a {
-            color: #7000cd; /* Text color */
+            color: #15df00; /* Text color */
             padding: 5px 10px; /* Smaller padding */
             text-decoration: none; /* No underline */
             border: 2px solid transparent; /* Initial transparent border */
@@ -182,7 +182,7 @@
         }
 
         .bottom-nav a:hover {
-            border-color: #7000cd; /* Change border color on hover */
+            border-color: #15df00; /* Change border color on hover */
             background-color: transparent; /* Ensure no background color */
             color: #5c00a2; /* Optional: Change text color on hover */
             border-width: 2px; /* Stroke weight on hover */
@@ -193,14 +193,13 @@
     <div id="particles-js"></div>
 
     <div class="main">
-        <h1>Zen v1.00</h1>
+        <h1>Viper</h1>
 
         <div class="phrase" id="random-phrase"></div>
         <div class="search-bar">
             <form id="uv-form" onsubmit="return handleSearch(event);">
                 <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
                 <input id="uv-address" type="text" placeholder="Search..." class="search-input" required/>
-                <button type="submit" class="search-button">Search</button> <!-- Added Search button -->
             </form>
         </div>
         <div class="desc left-margin">
@@ -263,13 +262,13 @@
                     }
                 },
                 color: {
-                    value: "#7000cd"
+                    value: "#15df00"
                 },
                 shape: {
                     type: "circle",
                     stroke: {
                         width: 0,
-                        color: "#7000cd"
+                        color: "#15df00"
                     },
                 },
                 opacity: {
@@ -316,14 +315,6 @@
             },
             retina_detect: true
         });
-
-        function handleSearch(event) {
-            event.preventDefault(); // Prevent default form submission
-            const query = document.getElementById('uv-address').value;
-            const searchEngine = document.getElementById('uv-search-engine').value;
-            window.open(searchEngine.replace('%s', encodeURIComponent(query)), '_self'); // Open search
-            return false; // Prevent form submission
-        }
     </script>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
