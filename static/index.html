@@ -9,6 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #15df00;
+            --background-color: #000;
+            --input-background: #333;
+            --input-text-color: #fff;
+            --footer-text-color: #fff;
+            --hover-text-color: #5c00a2;
+            --placeholder-color: #aaa;
+            --text-shadow-color: rgba(21, 223, 0, 0.8);
+        }
+
         /* Style for the particles container */
         #particles-js {
             position: absolute;
@@ -21,7 +32,7 @@
         }
 
         body {
-            background-color: #000;
+            background-color: var(--background-color);
             margin: 0;
             font-family: 'Open Sans', sans-serif; /* Use the imported font */
             overflow: hidden; /* Prevent scrolling */
@@ -36,8 +47,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #15df00; /* Heading color */
-            text-shadow: 0 0 20px #15df00, 0 0 30px #15df00; /* Glowing text effect */
+            color: var(--primary-color); /* Heading color */
+            text-shadow: 0 0 20px var(--text-shadow-color), 0 0 30px var(--text-shadow-color); /* Glowing text effect */
             user-select: none; /* Prevent text selection */
         }
 
@@ -63,19 +74,19 @@
         .form__input {
             padding: 10px;
             font-size: 1em; /* Font size for input */
-            border: 2px solid #15df00; /* Border color */
+            border: 2px solid var(--primary-color); /* Border color */
             border-radius: 5px; /* Rounded corners */
             outline: none; /* Remove outline on focus */
-            color: #fff; /* Text color */
-            background-color: #333; /* Background color */
+            color: var(--input-text-color); /* Text color */
+            background-color: var(--input-background); /* Background color */
             transition: border-color 0.3s; /* Transition effect */
         }
 
-        .search-input::placeholder {
-            color: #aaa; /* Placeholder text color */
+        .form__input::placeholder {
+            color: var(--placeholder-color); /* Placeholder text color */
         }
 
-        .search-input:focus {
+        .form__input:focus {
             border-color: #fff; /* Change border color on focus */
         }
 
@@ -84,7 +95,7 @@
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            color: white;
+            color: var(--footer-text-color);
             text-align: center;
         }
 
@@ -98,7 +109,7 @@
         }
 
         .bottom-nav a {
-            color: #15df00; /* Text color */
+            color: var(--primary-color); /* Text color */
             padding: 5px 10px; /* Smaller padding */
             text-decoration: none; /* No underline */
             border: 2px solid transparent; /* Initial transparent border */
@@ -108,31 +119,29 @@
         }
 
         .bottom-nav a:hover {
-            border-color: #15df00; /* Change border color on hover */
+            border-color: var(--primary-color); /* Change border color on hover */
             background-color: transparent; /* Ensure no background color */
-            color: #5c00a2; /* Optional: Change text color on hover */
-            border-width: 2px; /* Stroke weight on hover */
+            color: var(--hover-text-color); /* Change text color on hover */
         }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
 
-    <div class="main">
+    <main class="main">
         <h1>Viper</h1>
-
         <div class="phrase" id="random-phrase"></div>
         <div class="search-bar">
-            <form id="uv-form">
+            <form id="uv-form" aria-label="Search Form">
                 <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
-                <input id="uv-address" type="text" placeholder="Search..." class="form__input" required/>
+                <input id="uv-address" type="text" placeholder="Search..." class="form__input" required aria-label="Search input"/>
             </form>
         </div>
         <div class="desc left-margin">
-            <p id="uv-error"></p>
+            <p id="uv-error" aria-live="polite"></p>
             <pre id="uv-error-code"></pre>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -163,77 +172,80 @@
             "Go Guardian got nothin on me!"
         ];
 
-        function displayRandomPhrase() {
+        const displayRandomPhrase = () => {
             const randomIndex = Math.floor(Math.random() * phrases.length);
-            const randomPhrase = phrases[randomIndex];
-            document.getElementById('random-phrase').textContent = randomPhrase;
-        }
+            document.getElementById('random-phrase').textContent = phrases[randomIndex];
+        };
 
+        const initParticles = () => {
+            particlesJS("particles-js", {
+                particles: {
+                    number: {
+                        value: 30,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: "#15df00"
+                    },
+                    shape: {
+                        type: "circle",
+                        stroke: {
+                            width: 0,
+                            color: "#15df00"
+                        },
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                    },
+                    size: {
+                        value: 5,
+                        random: true,
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 6,
+                        direction: "none",
+                        out_mode: "out",
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+        };
+
+        // Initialize on page load
         displayRandomPhrase();
-
-        particlesJS("particles-js", {
-            particles: {
-                number: {
-                    value: 30,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: "#15df00"
-                },
-                shape: {
-                    type: "circle",
-                    stroke: {
-                        width: 0,
-                        color: "#15df00"
-                    },
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                },
-                size: {
-                    value: 5,
-                    random: true,
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: "none",
-                    out_mode: "out",
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "repulse"
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-                    resize: true
-                },
-                modes: {
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    }
-                }
-            },
-            retina_detect: true
-        });
+        initParticles();
     </script>
 </body>
 </html>
