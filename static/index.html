@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+    <style>
+        /* Style for the particles container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place behind other content */
+            filter: blur(10px); /* Adjust the blur intensity here */
+        }
+
+        body {
+            background-color: #000;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif; /* Use the imported font */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .main {
+            position: absolute; /* Change to absolute for better centering */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust position */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #7000cd; /* Heading color */
+            text-shadow: 0 0 20px #7000cd, 0 0 30px #7000cd; /* Glowing text effect */
+            user-select: none; /* Prevent text selection */
+        }
+
+        @keyframes slideInFromTop {
+            0% {
+                transform: translateY(-30px); /* Start above the viewport */
+                opacity: 0; /* Start hidden */
+            }
+            100% {
+                transform: translateY(0); /* End at original position */
+                opacity: 1; /* Fully visible */
+            }
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 0;
+            animation: slideInFromTop 1s ease-in-out forwards; /* Slide and fade-in animation */
+        }
+
+        .phrase {
+            font-size: 1.2em; /* Adjust size to make it smaller */
+            margin: 20px 0; /* Add margin above and below */
+            color: #ffffff; /* Text color */
+            text-shadow: 0 0 10px #ffffff; /* Glowing effect */
+            opacity: 0; /* Start hidden for fade-in */
+            animation: fadeIn 1s ease-in-out forwards; /* Fade in animation for phrase */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Fully visible */
+            }
+        }
+
+        .search-bar {
+            display: flex;
+            flex-direction: column; /* Stack inputs vertically */
+            align-items: center; /* Center items */
+            margin-top: 20px; /* Add some margin on top */
+            opacity: 0; /* Start hidden for animation */
+            animation: slideInFromBottom 1s ease-out forwards; /* Slide in animation */
+            animation-delay: 0.5s; /* Delay for slide-in */
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                transform: translateY(30px); /* Start below */
+                opacity: 0; /* Start hidden */
+            }
+            to {
+                transform: translateY(0); /* Move to original position */
+                opacity: 1; /* Fully visible */
+            }
+        }
+
+        .search-input {
+            padding: 10px;
+            font-size: 1em; /* Font size for input */
+            border: 2px solid #7000cd; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            outline: none; /* Remove outline on focus */
+            color: #fff; /* Text color */
+            background-color: #333; /* Background color */
+            transition: border-color 0.3s; /* Transition effect */
+        }
+
+        .search-input::placeholder {
+            color: #aaa; /* Placeholder text color */
+        }
+
+        .search-input:focus {
+            border-color: #fff; /* Change border color on focus */
+        }
+
+        .search-button {
+            margin-top: 10px; /* Space above button */
+            padding: 10px 15px; /* Padding for the button */
+            font-size: 1em; /* Font size for button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #7000cd; /* Background color */
+            color: #fff; /* Text color */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Transition for hover */
+        }
+
+        .search-button:hover {
+            background-color: #5c00a2; /* Darker shade on hover */
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0; /* Margin above the navbar */
+            z-index: 1; /* Ensure it's above the particles */
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px; /* Space between tabs */
+            border: 2px solid transparent; /* Initial border */
+            border-radius: 5px; /* Rounded corners */
+            transition: border-color 0.3s, color 0.3s; /* Transition effect */
+        }
+
+        .nav a:hover {
+            border-color: #7000cd; /* Change border color on hover */
+            color: #7000cd; /* Change text color on hover */
+        }
+
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Bottom Right Navigation */
+        .bottom-nav {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex; /* Flexbox for alignment */
+            gap: 10px; /* Space between buttons */
+        }
+
+        .bottom-nav a {
+            color: #7000cd; /* Text color */
+            padding: 5px 10px; /* Smaller padding */
+            text-decoration: none; /* No underline */
+            border: 2px solid transparent; /* Initial transparent border */
+            border-radius: 5px; /* Rounded corners */
+            transition: border-color 0.3s, color 0.3s; /* Transition effect */
+            font-size: 0.9em; /* Smaller font size */
+        }
+
+        .bottom-nav a:hover {
+            border-color: #7000cd; /* Change border color on hover */
+            background-color: transparent; /* Ensure no background color */
+            color: #5c00a2; /* Optional: Change text color on hover */
+            border-width: 2px; /* Stroke weight on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="main">
+        <h1>Zen v1.00</h1>
+
+        <div class="phrase" id="random-phrase"></div>
+        <div class="search-bar">
+            <form id="uv-form" onsubmit="return handleSearch(event);">
+                <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
+                <input id="uv-address" type="text" placeholder="Search..." class="search-input" required/>
+                <button type="submit" class="search-button">Search</button> <!-- Added Search button -->
+            </form>
+        </div>
+        <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
+        </div>
+    </div>
+
+    <!-- Bottom Right Navigation -->
+    <div class="bottom-nav">
+        <a href="/static/">Search</a>
+        <a href="/static/games.html">Games</a> <!-- Added Games tab -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-VHVNHMYGN3"></script>
+    <script src="search.js"></script> <!-- Include the new search.js file -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-VHVNHMYGN3');
+
+        const phrases = [
+            "Ermmmm... what the sigma?",
+            "I love interstellar!",
+            "v1.00 is horrible!",
+            "I can't code.",
+            "Siege is a fun game!",
+            "I love proxies!",
+            "Too many memes!",
+            "Code is art.",
+            "Javascript 😍",
+            "R.I.P Project Unblocked.",
+            "Sick burn bro!",
+            "13,000 lines of code!",
+            "Best proxy!",
+            "Honey? Where's my supersuit?",
+            "Define interface.",
+            "Game page soon?",
+            "Sub to Dustie Fn!",
+            "Go Guardian got nothin on me!"
+        ];
+
+        function displayRandomPhrase() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            const randomPhrase = phrases[randomIndex];
+            document.getElementById('random-phrase').textContent = randomPhrase;
+        }
+
+        displayRandomPhrase();
+
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 30,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#7000cd"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#7000cd"
+                    },
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                },
+                size: {
+                    value: 5,
+                    random: true,
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    out_mode: "out",
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        function handleSearch(event) {
+            event.preventDefault(); // Prevent default form submission
+            const query = document.getElementById('uv-address').value;
+            const searchEngine = document.getElementById('uv-search-engine').value;
+            window.open(searchEngine.replace('%s', encodeURIComponent(query)), '_self'); // Open search
+            return false; // Prevent form submission
+        }
+    </script>
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="index.js" defer></script>
+    <script src="error.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirect Page</title>
+
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <script>
+    function openGame() {
+      // Try to open a new window for the game
+      var win = window.open(); 
+
+      // Check if pop-up was blocked (window is null or undefined if blocked)
+      if (win) {
+        // Set the title of the new window
+        win.document.title = "Schoology";
+
+        // Create a link element for the favicon
+        var favicon = win.document.createElement('link');
+        favicon.rel = "icon";
+        favicon.href = "https://i0.wp.com/www.mpslakers.com/wp-content/uploads/2020/01/schoology-logo.png?fit=511%2C511&ssl=1"; // Replace with the logo URL you want
+        favicon.type = "image/png";
+
+        // Add the favicon to the head of the new window's document
+        var head = win.document.getElementsByTagName('head')[0] || win.document.createElement('head');
+        head.appendChild(favicon);
+        win.document.documentElement.appendChild(head);
+
+        // Create an iframe to load the content
+        var url = "/static/"; // URL to load inside the iframe
+        var iframe = win.document.createElement('iframe');
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.src = url;
+
+        // Add iframe to the new window body
+        win.document.body.style.margin = "0"; // Remove margins from the new window body
+        win.document.body.appendChild(iframe); // Add iframe
+
+        // Close the current page after redirecting
+        window.close();
+      } else {
+        // Show alert only if pop-ups are blocked
+        alert("Please allow pop-ups to proceed. After, refresh your page.");
+      }
+    }
+
+    window.onload = function() {
+      openGame();
+    };
+  </script>
+</head>
+<body>
+</body>
+</html>

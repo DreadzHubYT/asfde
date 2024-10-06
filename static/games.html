@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            margin: 0;
+            padding: 20px; /* Add some padding */
+            position: relative; /* Relative positioning for particles */
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place behind other content */
+            filter: blur(10px); /* Blur effect */
+        }
+
+        /* Add keyframes for fade-in effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0; /* Start hidden */
+            }
+            100% {
+                opacity: 1; /* Fully visible */
+            }
+        }
+
+        h1 {
+            color: #7000cd; /* Heading color */
+            margin: 20px 0; /* Space above and below heading */
+            text-shadow: 0 0 10px #7000cd, 0 0 20px #7000cd; /* Glowing text effect */
+            text-align: center; /* Center the heading text */
+            position: fixed; /* Fixed positioning to stay at the top */
+            top: 20px; /* Space from the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            z-index: 1; /* Ensure it's above other content */
+            animation: fadeIn 1s ease-in-out forwards; /* Apply fade-in animation */
+        }
+
+        .game-buttons-container {
+            display: flex; /* Flex container for buttons */
+            gap: 20px; /* Space between buttons */
+            margin-top: 80px; /* Space above buttons to avoid overlap with the heading */
+            flex-wrap: wrap; /* Wrap buttons to next line on smaller screens */
+            justify-content: center; /* Center buttons in the container */
+            position: fixed; /* Fixed positioning to stay at the top */
+            top: 70px; /* Space from the top (below the heading) */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            z-index: 1; /* Ensure it's above other content */
+        }
+
+        .game-button {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center align items vertically */
+            background-color: #111111; /* Button background color */
+            border: 2px solid #7000cd; /* Purple outline */
+            border-radius: 10px; /* Rounded corners */
+            padding: 5px; /* Reduced padding around the content */
+            transition: background-color 0.3s, transform 0.3s, border-color 0.3s; /* Transition for hover effect */
+            cursor: pointer; /* Change cursor to pointer */
+            width: 200px; /* Reduced width */
+            user-select: none; /* Prevent text selection */
+        }
+
+        .game-button:hover {
+            background-color: #222222; /* Darker background on hover */
+            border-color: #ffffff; /* Change outline to white on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .game-image {
+            width: 50px; /* Reduced image width */
+            height: 50px; /* Reduced image height */
+            border-radius: 5px; /* Rounded corners */
+            margin-right: 10px; /* Reduced space between image and text */
+        }
+
+        .text-container {
+            display: flex;
+            flex-direction: column; /* Stack text vertically */
+        }
+
+        .text-container h2 {
+            font-size: 1em; /* Smaller font size for title */
+            margin: 0; /* Remove margin for compactness */
+        }
+
+        .description {
+            color: #fff; /* Text color for description */
+            font-size: 0.6em; /* Smaller font size for description */
+        }
+
+        /* Bottom Right Navigation */
+        .bottom-nav {
+            position: fixed; /* Change to fixed positioning */
+            bottom: 20px; /* 20px from the bottom */
+            right: 20px; /* 20px from the right */
+            display: flex; /* Flexbox for alignment */
+            gap: 10px; /* Space between buttons */
+            z-index: 1; /* Ensure it is on top of other content */
+        }
+
+        .bottom-nav a {
+            color: #7000cd; /* Text color */
+            padding: 5px 10px; /* Smaller padding */
+            text-decoration: none; /* No underline */
+            border: 2px solid transparent; /* Initial transparent border */
+            border-radius: 5px; /* Rounded corners */
+            transition: border-color 0.3s, color 0.3s; /* Transition effect */
+            font-size: 0.9em; /* Smaller font size */
+        }
+
+        .bottom-nav a:hover {
+            border-color: #7000cd; /* Change border color on hover */
+            background-color: transparent; /* Ensure no background color */
+            color: #5c00a2; /* Optional: Change text color on hover */
+            border-width: 2px; /* Stroke weight on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div> <!-- Particles container -->
+
+    <!-- Game Heading -->
+    <h1>Games</h1>
+    
+    <!-- Game Buttons Container -->
+    <div class="game-buttons-container">
+        <div class="game-button" onclick="location.href='/static/games/roblox.html'">
+            <img src="/static/images/roblox.png" alt="Game 1" class="game-image">
+            <div class="text-container">
+                <h2>Roblox</h2>
+                <p class="description">What is Roblox? ROBLOX is an online virtual playground and workshop, where kids of all ages can safely interact, create, have fun, and learn.</p>
+            </div>
+        </div>
+
+        <div class="game-button" onclick="location.href='game2.html'">
+            <img src="game2_image.jpg" alt="Game 2" class="game-image">
+            <div class="text-container">
+                <h2>Game Name 2</h2>
+                <p class="description">This is a brief description of Game 2.</p>
+            </div>
+        </div>
+
+        <div class="game-button" onclick="location.href='game3.html'">
+            <img src="game3_image.jpg" alt="Game 3" class="game-image">
+            <div class="text-container">
+                <h2>Game Name 3</h2>
+                <p class="description">This is a brief description of Game 3.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Particles.js script -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('particles.json loaded...');
+        });
+    </script>
+</body>
+</html>
