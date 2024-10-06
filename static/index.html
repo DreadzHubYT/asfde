@@ -20,6 +20,21 @@
             --text-shadow-color: rgba(21, 223, 0, 0.8);
         }
 
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .animation-fade-in {
+            animation: fadeIn 0.5s ease forwards; /* Fade-in animation */
+        }
+
         /* Style for the particles container */
         #particles-js {
             position: absolute;
@@ -129,12 +144,12 @@
     <div id="particles-js"></div>
 
     <main class="main">
-        <h1>Viper</h1>
-        <div class="phrase" id="random-phrase"></div>
+        <h1 class="animation-fade-in">Viper</h1>
+        <div class="phrase animation-fade-in" id="random-phrase"></div>
         <div class="search-bar">
             <form id="uv-form" aria-label="Search Form">
                 <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
-                <input id="uv-address" type="text" placeholder="Search..." class="form__input" required aria-label="Search input"/>
+                <input id="uv-address" type="text" placeholder="Search..." class="form__input animation-fade-in" required aria-label="Search input"/>
             </form>
         </div>
         <div class="desc left-margin">
@@ -243,9 +258,19 @@
             });
         };
 
+        const initAnimations = () => {
+            const elementsToAnimate = document.querySelectorAll('.animation-fade-in');
+            elementsToAnimate.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('animation-fade-in');
+                }, index * 300); // Stagger the animations by 300ms
+            });
+        };
+
         // Initialize on page load
         displayRandomPhrase();
         initParticles();
+        initAnimations();
     </script>
 </body>
 </html>
