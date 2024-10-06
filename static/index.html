@@ -310,6 +310,22 @@
             },
             retina_detect: true
         });
+
+                function handleSearch(event) {
+            event.preventDefault(); // Prevent default form submission
+            const searchInput = document.getElementById('uv-address').value; // Get the search input value
+            const searchEngineUrl = document.getElementById('uv-search-engine').value; // Get the search engine URL
+
+            if (searchInput) {
+                // Replace %s in the URL with the actual search term
+                const searchUrl = searchEngineUrl.replace('%s', encodeURIComponent(searchInput));
+                window.location.href = searchUrl; // Redirect to the search engine with the query
+            } else {
+                document.getElementById('uv-error').textContent = "Please enter a search term."; // Show an error if empty
+            }
+
+            return false; // Return false to prevent form submission
+        }
     </script>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
