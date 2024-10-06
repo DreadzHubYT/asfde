@@ -124,9 +124,9 @@
 
         <div class="phrase" id="random-phrase"></div>
         <div class="search-bar">
-            <form id="uv-form" onsubmit="return handleSearch(event);">
+            <form id="uv-form">
                 <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
-                <input id="uv-address" type="text" placeholder="Search Google or type an URL" class="search-input" required/>
+                <input id="uv-address" type="text" placeholder="Search..." class="search-input" required/>
             </form>
         </div>
         <div class="desc left-margin">
@@ -242,9 +242,5 @@
             retina_detect: true
         });
     </script>
-
-    <div id="footer">
-        <p>&copy; 2023 TIW. All rights reserved.</p>
-    </div>
 </body>
 </html>
